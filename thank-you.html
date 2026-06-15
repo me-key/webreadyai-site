@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>תודה על הרכישה — WebReady AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #0c0f1a;
+    --bg-2:      #111527;
+    --bg-card:   #161b2e;
+    --bg-card-2: #1c2238;
+    --border:    rgba(255,255,255,0.08);
+    --border-2:  rgba(255,255,255,0.14);
+    --green:     #57e87a;
+    --green-dim: rgba(87,232,122,0.12);
+    --green-glow:rgba(87,232,122,0.25);
+    --white:     #f0f4ff;
+    --muted:     #7a85a3;
+    --muted-2:   #a0aacc;
+    --text:      #e8eeff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Heebo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--bg-card-2); border-radius: 3px; }
+
+  /* ── Nav ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 64px;
+    background: rgba(12,15,26,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 0;
+  }
+  .logo img {
+    height: 36px;
+    width: auto;
+  }
+
+  .nav-back {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--muted-2);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--green); }
+  .nav-back svg { transform: scaleX(-1); }
+
+  /* ── Main ── */
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.5rem;
+    position: relative;
+  }
+
+  /* Subtle glow blob */
+  main::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(87,232,122,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .card {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border-2);
+    border-radius: 20px;
+    padding: 3.5rem 3rem;
+    max-width: 560px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 0 80px rgba(87,232,122,0.07), 0 24px 60px rgba(0,0,0,0.4);
+  }
+
+  /* Green top accent */
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 20px; left: 20px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--green), transparent);
+    border-radius: 0 0 2px 2px;
+  }
+
+  /* ── Check icon ── */
+  .check-wrap {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 2rem;
+    background: var(--green-dim);
+    border: 2px solid rgba(87,232,122,0.35);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: pop 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+  .check-wrap svg {
+    color: var(--green);
+  }
+
+  @keyframes pop {
+    from { transform: scale(0.4); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--green-dim);
+    border: 1px solid rgba(87,232,122,0.3);
+    color: var(--green);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    padding: 0.3rem 0.9rem;
+    border-radius: 100px;
+    margin-bottom: 1.4rem;
+    animation: fadeUp 0.5s 0.1s both;
+  }
+
+  h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    animation: fadeUp 0.5s 0.15s both;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--green);
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: var(--muted-2);
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.5s 0.2s both;
+  }
+
+  /* ── CTA buttons ── */
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    animation: fadeUp 0.5s 0.3s both;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.97rem;
+    font-weight: 700;
+    border-radius: 10px;
+    padding: 0.85rem 1.8rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.15s;
+    border: none;
+  }
+  .btn:active { transform: scale(0.98); }
+
+  .btn-green {
+    background: var(--green);
+    color: #0c0f1a;
+  }
+  .btn-green:hover { opacity: 0.88; }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--muted-2);
+    border: 1px solid var(--border-2);
+  }
+  .btn-outline:hover { border-color: var(--green); color: var(--green); }
+
+  /* ── Footer note ── */
+  .footer-note {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    animation: fadeUp 0.5s 0.35s both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── Page footer ── */
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--muted-2); text-decoration: none; }
+  footer a:hover { color: var(--green); }
+
+  @media (max-width: 480px) {
+    .card { padding: 2.5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">
+    <img src="webreadyai-logo.png" alt="WebReady AI">
+  </a>
+  <a href="index.html" class="nav-back">
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <polyline points="9,18 15,12 9,6"/>
+    </svg>
+    חזרה לדף הבית
+  </a>
+</nav>
+
+<main>
+  <div class="card">
+
+    <div class="check-wrap">
+      <svg width="42" height="42" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <polyline points="20,6 9,17 4,12"/>
+      </svg>
+    </div>
+
+    <div class="badge">
+      <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline fill="none" stroke="#0c0f1a" stroke-width="2.5" points="8,12 11,15 16,9"/></svg>
+      הרכישה אושרה
+    </div>
+
+    <h1>תודה! <em>האתר שלך</em> כבר חי</h1>
+
+    <p class="subtitle">
+      הרכישה הושלמה בהצלחה.<br>
+      האתר שלך פעיל ומוכן — אפשר כבר לשתף אותו עם לקוחות.
+    </p>
+
+    <div class="actions">
+      <a href="https://wa.me/972522179277" class="btn btn-green" target="_blank" rel="noopener">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        שאלות? דברו איתנו
+      </a>
+    </div>
+
+    <p class="footer-note">בהצלחה עם העסק!</p>
+
+  </div>
+</main>
+
+<footer>
+  <p>© 2025 WebReady AI · <a href="index.html">דף הבית</a></p>
+</footer>
+
+</body>
+</html>
